@@ -26,3 +26,94 @@ cut -f 2-5, 8 -d , values.csv
 -l: print the names of files that contain matches, not the matches
 -n: print line numbers for matching lines
 -v: invert the match, i.e., only show lines that don't
+
+
+sort do sorting in the alphabetical orders but the flags -n and -r can be used to sort numerically and reverse way.. while -b tells to ignore leading blanks and -f tells to be incase senstive. 
+
+sort | uniq -> removes the duplicated lines 
+
+sort | uniq -c -> to display unique lines with a count of how often each occurs rather than using uniq and wc 
+
+We have to access the variable in the echo by using 
+$variable 
+
+for file in seasonal/*.csv; 
+do 
+    grep 2017-17-07 $file | tail -n 1
+done 
+
+last year.csv , if i want to delete this file from shell 
+i should use "last year.csv" 
+
+# CURL 
+Curl is used for transfering data from or to a server using URLs. It supports these protocols: DICT, FILE, FTPS.
+
+It is short for Client for URLs. 
+It is a Unix command line tool. 
+It is used to transfers data to and from a server 
+It is used to download data from HTTP(s) sites and FTP servers. 
+
+This is the basic syntax of the curl 
+curl [option flags] [url]
+
+CURL supports urls like 
+HTTP, HTTP, FTP, SFTP
+
+for example: 
+curl -O https://websitename.com/datafilename.txt
+
+to rename the file, use the lower case -o + new file name 
+curl -o renameddatafilename.txt https://websitename.com/datafilename.txt 
+
+Using globbing parser 
+curl -O https://websitename.com/datafilename[001-100].txt
+
+10th file 
+curl -O https://websitename.com/datafilename[001-100:10].txt
+
+-C resumes a previous file transfer if it times out before completion
+-L redirects the HTTP URL if a 300 error code occurs. 
+
+Downloading data using Wget 
+What is Wget ? 
+Wget: 
+- derives its name from World Wide Web and get 
+- native to linux but compatible for all OS 
+- used to download data from HTTP, HTTPS and FTP 
+- better that downloading data rather than curl in recursive way 
+- It can work on background 
+
+sudo apt-get install wget 
+
+downloading a single file 
+wget -b (Go to background immediately after startup)
+wget -q (Turn off the Wget output)
+wget -c (Resume broken download (i.e. continue getting a partially downloaded file))
+
+multiple file downloading with Wget 
+cat url_list.txt 
+
+https://websitename.com/datafilename001.txt 
+https://websitename.com/datafilename002.txt 
+
+we can donwload the inside the url_list.txt using -i 
+wget -i url_list.txt 
+
+upper bandwidth limit rate 
+wget --limit-rate={rate}k {file_location}
+for example: 
+wget --limit-rate=200k -i url_list.txt
+
+setting download constraints for small files 
+wget --wait={seconds} {file_location}
+for example: 
+wget --limit-rate=2.5 url_list.txt 
+
+Curl advantages: 
+- Can be used for downloading and uploading files from 20+ protocols
+- Easier to install across all operating systems 
+
+Wget advantages: 
+- Has many function which help in downloading multiple file download 
+- it can run in background 
+- Can handle various file formats for download (file directory, HTML page)
