@@ -107,7 +107,7 @@ wget --limit-rate=200k -i url_list.txt
 setting download constraints for small files 
 wget --wait={seconds} {file_location}
 for example: 
-wget --limit-rate=2.5 url_list.txt 
+wget --wait=2.5 url_list.txt 
 
 Curl advantages: 
 - Can be used for downloading and uploading files from 20+ protocols
@@ -117,3 +117,40 @@ Wget advantages:
 - Has many function which help in downloading multiple file download 
 - it can run in background 
 - Can handle various file formats for download (file directory, HTML page)
+
+What is csvkit ? 
+It is a suite of command line tools 
+It is developed in python by wireservice 
+It offers data processing and clearning capabilities on CSV files 
+
+in2csv SpotifyData.xlsx > SpotifyData.csv
+
+Prints the first sheet in Excel to console and does not save 
+in2csv SpotifyData.xlsx 
+
+> redirects the output and saves it as a new file SpotifyData.csv 
+
+> SpotifyData.csv
+
+Converting files to CSV 
+Use --names or -n option to print all sheet names in SpotifyData.xlsx 
+in2csv -n SpotifyData.xlsx 
+
+output (sheet names)
+Worksheet1_Popularity 
+Worksheet2_MusicAttributes
+
+We should use --sheet option followed by the sheet "Worksheet1_popularity" to be converted. 
+
+in2csv SpotifyData.xlsx --sheet "Worksheet1_Popularity" > Spotify_Popularity.csv
+
+Does not print logs in the terminal 
+
+We can preview documents by using csvlook or cat 
+csvlook: renders a CSV to the command line in a Markdown-compatible, fixed width format 
+
+csvlook -h 
+
+csvstat: descriptive stats on CSV data files 
+
+csvstat: prints descriptive summary statistics on all columns in CSV (e.g. mean, median, unique value counts)
