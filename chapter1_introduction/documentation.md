@@ -33,7 +33,7 @@ Each argument can be accessed via the $ notation. The first as $1, the second as
 
 echo $1 
 echo $2 
-echo $@ 
+echo $@
 echo "There are" $# "arguments"
 
 How to extract argument from the console, 
@@ -44,3 +44,6 @@ cat hire_data/* | grep "$1" > "Tallinn".csv
 To look data we will use 
 
 Cat data
+
+
+./docs "shiva chaudhary" "robin mAN SHREASTHA" 
