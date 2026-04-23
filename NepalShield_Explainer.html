@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NepalShield — Team Explainer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A1628;
+    --blue: #1A3C6E;
+    --accent: #2563EB;
+    --cyan: #06B6D4;
+    --green: #10B981;
+    --red: #EF4444;
+    --amber: #F59E0B;
+    --light: #F0F4FF;
+    --white: #FFFFFF;
+    --muted: #94A3B8;
+    --card: #111827;
+    --border: rgba(255,255,255,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(37,99,235,0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 80% 80%, rgba(6,182,212,0.1) 0%, transparent 60%);
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(37,99,235,0.15);
+    border: 1px solid rgba(37,99,235,0.4);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--cyan);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .badge .dot { width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; animation: pulse 2s infinite; }
+
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(42px, 8vw, 80px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+  }
+
+  .hero-sub {
+    font-size: clamp(16px, 2.5vw, 22px);
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 48px;
+    max-width: 600px;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--cyan) 0%, var(--accent) 50%, #818CF8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* SECTIONS */
+  .section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .section-desc {
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 600px;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+  }
+
+  /* STORY CARD */
+  .story-card {
+    background: linear-gradient(135deg, rgba(239,68,68,0.08) 0%, rgba(17,24,39,0.8) 60%);
+    border: 1px solid rgba(239,68,68,0.25);
+    border-radius: 20px;
+    padding: 36px;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .story-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--red), var(--amber));
+  }
+
+  .story-card .story-tag {
+    display: inline-block;
+    background: rgba(239,68,68,0.15);
+    border: 1px solid rgba(239,68,68,0.3);
+    color: #FCA5A5;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+
+  .story-card p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #E2E8F0;
+  }
+
+  .highlight { color: var(--amber); font-weight: 500; }
+  .highlight-red { color: #FCA5A5; font-weight: 500; }
+  .highlight-green { color: #6EE7B7; font-weight: 500; }
+
+  /* PROBLEM GRID */
+  .prob-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+
+  .prob-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .prob-card:hover { transform: translateY(-4px); border-color: rgba(37,99,235,0.4); }
+
+  .prob-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 48px;
+    font-weight: 800;
+    color: rgba(255,255,255,0.05);
+    position: absolute;
+    top: 8px; right: 16px;
+    line-height: 1;
+  }
+
+  .prob-icon { font-size: 28px; margin-bottom: 12px; }
+  .prob-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+  .prob-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* CONCEPT BRIDGE */
+  .bridge {
+    background: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(6,182,212,0.06));
+    border: 1px solid rgba(37,99,235,0.2);
+    border-radius: 24px;
+    padding: 48px 40px;
+    margin-bottom: 64px;
+  }
+
+  .bridge-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .bridge-grid {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 0;
+    align-items: center;
+  }
+
+  .bridge-col { display: flex; flex-direction: column; gap: 10px; }
+
+  .bridge-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .bridge-item.left { border-left: 3px solid var(--amber); }
+  .bridge-item.right { border-left: 3px solid var(--cyan); }
+
+  .bridge-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 20px;
+  }
+
+  .bridge-labels {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    margin-bottom: 20px;
+    gap: 0;
+  }
+
+  .bridge-label {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* PIPELINE */
+  .pipeline {
+    margin-bottom: 64px;
+  }
+
+  .pipeline-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin-bottom: 48px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .pipeline-step {
+    flex: 1;
+    min-width: 140px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0;
+    padding: 20px 16px;
+    text-align: center;
+    position: relative;
+  }
+
+  .pipeline-step:first-child { border-radius: 16px 0 0 16px; }
+  .pipeline-step:last-child { border-radius: 0 16px 16px 0; }
+
+  .pipeline-step::after {
+    content: '→';
+    position: absolute;
+    right: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 18px;
+    z-index: 2;
+  }
+
+  .pipeline-step:last-child::after { display: none; }
+
+  .pipeline-step .step-icon { font-size: 24px; margin-bottom: 8px; }
+  .pipeline-step .step-name { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; margin-bottom: 4px; }
+  .pipeline-step .step-sub { font-size: 11px; color: var(--muted); }
+
+  .pipeline-step.txn { border-top: 3px solid var(--muted); }
+  .pipeline-step.velocity { border-top: 3px solid var(--amber); }
+  .pipeline-step.geo { border-top: 3px solid var(--cyan); }
+  .pipeline-step.behavior { border-top: 3px solid #818CF8; }
+  .pipeline-step.synthesis { border-top: 3px solid var(--accent); background: rgba(37,99,235,0.08); }
+  .pipeline-step.otp { border-top: 3px solid var(--green); }
+  .pipeline-step.verdict { border-top: 3px solid var(--green); background: rgba(16,185,129,0.08); }
+
+  /* AGENT CARDS */
+  .agents-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 64px;
+  }
+
+  .agent-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .agent-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  }
+
+  .agent-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .agent-card.vel::before { background: var(--amber); }
+  .agent-card.geo::before { background: var(--cyan); }
+  .agent-card.beh::before { background: #818CF8; }
+  .agent-card.syn::before { background: var(--accent); }
+  .agent-card.otp::before { background: var(--green); }
+
+  .agent-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .agent-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+
+  .agent-card.vel .agent-icon { background: rgba(245,158,11,0.15); }
+  .agent-card.geo .agent-icon { background: rgba(6,182,212,0.15); }
+  .agent-card.beh .agent-icon { background: rgba(129,140,248,0.15); }
+  .agent-card.syn .agent-icon { background: rgba(37,99,235,0.15); }
+  .agent-card.otp .agent-icon { background: rgba(16,185,129,0.15); }
+
+  .agent-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; }
+  .agent-role { font-size: 12px; color: var(--muted); }
+
+  .agent-desc { font-size: 14px; color: #CBD5E1; line-height: 1.6; margin-bottom: 16px; }
+
+  .agent-checks { display: flex; flex-direction: column; gap: 6px; }
+
+  .check-item {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 13px; color: var(--muted);
+  }
+
+  .check-item::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+  /* VERDICT */
+  .verdict-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .verdict-card {
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .verdict-card.pass { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); }
+  .verdict-card.otp-v { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); }
+  .verdict-card.block { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); }
+
+  .verdict-label { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .verdict-card.pass .verdict-label { color: var(--green); }
+  .verdict-card.otp-v .verdict-label { color: var(--amber); }
+  .verdict-card.block .verdict-label { color: var(--red); }
+
+  .verdict-score { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; margin-bottom: 8px; }
+  .verdict-desc { font-size: 13px; color: var(--muted); }
+
+  /* CHALLENGES */
+  .challenges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    margin-bottom: 64px;
+  }
+
+  .challenge-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+  }
+
+  .ch-problem {
+    display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;
+  }
+
+  .ch-num {
+    background: rgba(239,68,68,0.15);
+    color: var(--red);
+    border-radius: 8px;
+    width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  .ch-problem-text { font-size: 14px; font-weight: 500; color: #FCA5A5; }
+
+  .ch-arrow { text-align: center; color: var(--muted); font-size: 18px; margin-bottom: 12px; }
+
+  .ch-solution {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: rgba(16,185,129,0.06);
+    border: 1px solid rgba(16,185,129,0.2);
+    border-radius: 10px;
+    padding: 12px;
+  }
+
+  .ch-solution-icon { font-size: 18px; flex-shrink: 0; }
+  .ch-solution-text { font-size: 13px; color: #6EE7B7; line-height: 1.5; }
+
+  /* TECH STACK */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 64px;
+  }
+
+  .tech-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: border-color 0.2s;
+  }
+
+  .tech-item:hover { border-color: rgba(37,99,235,0.4); }
+
+  .tech-emoji { font-size: 20px; }
+  .tech-info { flex: 1; }
+  .tech-name { font-size: 13px; font-weight: 600; }
+  .tech-use { font-size: 11px; color: var(--muted); }
+
+  /* LATENCY */
+  .latency-bar {
+    margin-bottom: 12px;
+  }
+
+  .lat-row {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+  }
+
+  .lat-label { font-size: 13px; width: 220px; flex-shrink: 0; color: #CBD5E1; }
+  .lat-track { flex: 1; background: rgba(255,255,255,0.05); border-radius: 100px; height: 8px; overflow: hidden; }
+  .lat-fill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--accent), var(--cyan)); }
+  .lat-val { font-size: 12px; color: var(--cyan); width: 60px; text-align: right; flex-shrink: 0; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 60px 24px;
+    color: var(--muted);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer strong { color: var(--white); }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 600px) {
+    .bridge-grid { grid-template-columns: 1fr; }
+    .bridge-arrow { display: none; }
+    .verdict-grid { grid-template-columns: 1fr; }
+    .pipeline-flow { flex-direction: column; }
+    .pipeline-step { border-radius: 12px !important; margin-bottom: 4px; }
+    .pipeline-step::after { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge"><span class="dot"></span>GIBL AI/ML Hackathon 2026 — Track B</div>
+  <h1><span class="gradient-text">NepalShield</span></h1>
+  <p class="hero-sub">An Agentic Fraud Detection System for Real-Time Transaction Protection in Nepali Banking</p>
+  <p style="color: var(--muted); font-size: 13px;">Team Explainer — So everyone understands the idea clearly 💡</p>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 1: THE PROBLEM -->
+<div class="section fade-in">
+  <div class="section-label">Step 1 — The Problem</div>
+  <h2 class="section-title">What problem are we solving?</h2>
+  <p class="section-desc">Read this story. This is the exact scenario from the hackathon problem statement.</p>
+
+  <div class="story-card">
+    <div class="story-tag">🚨 Real Fraud Scenario</div>
+    <p>
+      <span class="highlight-red">Sita's bank account</span> shows a transfer of 
+      <span class="highlight">NRs 85,000 to an unfamiliar eSewa merchant at 2:14 AM</span> — 
+      very unusual for her. She normally only makes small grocery payments during the day.<br><br>
+      At the same time, the bank's system detects that the login came from a 
+      <span class="highlight-red">new device registered in Dharan</span> — but Sita's phone is in 
+      <span class="highlight">Kathmandu</span>.<br><br>
+      A human would immediately say: <span class="highlight-green">"This is fraud. Block it."</span><br>
+      But current automated systems either <span class="highlight-red">miss it</span> or 
+      take minutes to respond — by then, the money is gone.
+    </p>
+  </div>
+
+  <div class="prob-grid">
+    <div class="prob-card">
+      <div class="prob-num">1</div>
+      <div class="prob-icon">🚫</div>
+      <div class="prob-title">False Positives</div>
+      <div class="prob-desc">Systems block real customers too often. That makes people angry and switch banks.</div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-num">2</div>
+      <div class="prob-icon">⚖️</div>
+      <div class="prob-title">Context-Blind Rules</div>
+      <div class="prob-desc">Sending Rs 200 at a grocery store vs Rs 85,000 to unknown person at 2AM is not the same risk — but current systems treat them equally.</div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-num">3</div>
+      <div class="prob-icon">👤</div>
+      <div class="prob-title">New User Blindspot</div>
+      <div class="prob-desc">New customers have no history. ML models can't analyze what they don't know — so new accounts are vulnerable.</div>
+    </div>
+    <div class="prob-card">
+      <div class="prob-num">4</div>
+      <div class="prob-icon">📵</div>
+      <div class="prob-title">SIM-Swap Attacks</div>
+      <div class="prob-desc">Fraudsters steal someone's phone number. Now they can receive the SMS OTP and bypass verification entirely.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 2: THE IDEA BRIDGE -->
+<div class="section fade-in">
+  <div class="section-label">Step 2 — Our Advantage</div>
+  <h2 class="section-title">We've already built this — just for car washing!</h2>
+  <p class="section-desc">Our production system and NepalShield solve the same core problem. We just need to apply it to banking.</p>
+
+  <div class="bridge">
+    <div class="bridge-title">🔄 Same Architecture. Different Domain.</div>
+    <div class="bridge-labels">
+      <div class="bridge-label" style="color: var(--amber);">🚗 Car Wash System (LIVE)</div>
+      <div></div>
+      <div class="bridge-label" style="color: var(--cyan);">🏦 NepalShield (Banking)</div>
+    </div>
+    <div class="bridge-grid">
+      <div class="bridge-col">
+        <div class="bridge-item left">5 booking website bots monitoring at once</div>
+        <div class="bridge-item left">Central coordinator fires all blockers</div>
+        <div class="bridge-item left">Slot blocked across all platforms in 30 sec</div>
+        <div class="bridge-item left">Supabase database = shared state</div>
+        <div class="bridge-item left">Live dashboard for manual control</div>
+      </div>
+      <div class="bridge-arrow">
+        <span>→</span>
+        <span>→</span>
+        <span>→</span>
+        <span>→</span>
+        <span>→</span>
+      </div>
+      <div class="bridge-col">
+        <div class="bridge-item right">5 specialized fraud detection agents</div>
+        <div class="bridge-item right">Synthesis Agent issues fraud verdict</div>
+        <div class="bridge-item right">Transaction blocked in under 800ms</div>
+        <div class="bridge-item right">Redis + PostgreSQL shared state</div>
+        <div class="bridge-item right">Fraud Ops dashboard for analysts</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 3: THE PIPELINE -->
+<div class="section fade-in">
+  <div class="section-label">Step 3 — How It Works</div>
+  <h2 class="section-title">The 5-Agent Pipeline</h2>
+  <p class="section-desc">Every transaction goes through this flow — from detection to verdict — in under 800ms.</p>
+
+  <div class="pipeline-flow">
+    <div class="pipeline-step txn">
+      <div class="step-icon">💳</div>
+      <div class="step-name">Transaction</div>
+      <div class="step-sub">Incoming payment detected</div>
+    </div>
+    <div class="pipeline-step velocity">
+      <div class="step-icon">⚡</div>
+      <div class="step-name">Velocity Agent</div>
+      <div class="step-sub">Too many txns too fast?</div>
+    </div>
+    <div class="pipeline-step geo">
+      <div class="step-icon">🌍</div>
+      <div class="step-name">Geo Agent</div>
+      <div class="step-sub">Location looks suspicious?</div>
+    </div>
+    <div class="pipeline-step behavior">
+      <div class="step-icon">🧠</div>
+      <div class="step-name">Behavior Agent</div>
+      <div class="step-sub">Not like the user's pattern?</div>
+    </div>
+    <div class="pipeline-step synthesis">
+      <div class="step-icon">⚖️</div>
+      <div class="step-name">Synthesis Agent</div>
+      <div class="step-sub">Weigh all signals → verdict</div>
+    </div>
+    <div class="pipeline-step verdict">
+      <div class="step-icon">✅</div>
+      <div class="step-name">Action</div>
+      <div class="step-sub">Pass / OTP / Block</div>
+    </div>
+  </div>
+
+  <p style="color: var(--muted); font-size: 14px; margin-bottom: 32px;">⚡ Agents 2, 3, and 4 run in <strong style="color: var(--white);">parallel</strong> — not one after another. This is how we achieve under 800ms total.</p>
+
+  <!-- AGENT CARDS -->
+  <div class="agents-grid">
+    <div class="agent-card vel">
+      <div class="agent-header">
+        <div class="agent-icon">⚡</div>
+        <div>
+          <div class="agent-name">Velocity Agent</div>
+          <div class="agent-role">Transaction Frequency</div>
+        </div>
+      </div>
+      <div class="agent-desc">Watches how many transactions happen per minute/hour. If someone suddenly makes 10 transfers in 2 minutes, that's suspicious.</div>
+      <div class="agent-checks">
+        <div class="check-item">Tracks 1min, 5min, 1hr, 24hr windows</div>
+        <div class="check-item">Uses Redis cache for sub-5ms speed</div>
+        <div class="check-item">Adapts thresholds per account type</div>
+      </div>
+    </div>
+
+    <div class="agent-card geo">
+      <div class="agent-header">
+        <div class="agent-icon">🌍</div>
+        <div>
+          <div class="agent-name">Geo Agent</div>
+          <div class="agent-role">Location Anomaly</div>
+        </div>
+      </div>
+      <div class="agent-desc">Checks if the transaction location makes physical sense. If your phone is in Kathmandu but the transaction is from Dharan — that's impossible.</div>
+      <div class="agent-checks">
+        <div class="check-item">Detects impossible travel scenarios</div>
+        <div class="check-item">Flags new/unknown devices</div>
+        <div class="check-item">Detects VPN / location spoofing</div>
+      </div>
+    </div>
+
+    <div class="agent-card beh">
+      <div class="agent-header">
+        <div class="agent-icon">🧠</div>
+        <div>
+          <div class="agent-name">Behavior Agent</div>
+          <div class="agent-role">User Pattern ML</div>
+        </div>
+      </div>
+      <div class="agent-desc">Learns what's "normal" for each user — time of day, transaction size, merchants, channels. Flags anything that breaks their personal pattern.</div>
+      <div class="agent-checks">
+        <div class="check-item">LSTM neural network per user</div>
+        <div class="check-item">Isolation Forest anomaly detection</div>
+        <div class="check-item">Peer-group model for new users</div>
+      </div>
+    </div>
+
+    <div class="agent-card syn">
+      <div class="agent-header">
+        <div class="agent-icon">⚖️</div>
+        <div>
+          <div class="agent-name">Synthesis Agent</div>
+          <div class="agent-role">The Brain / Orchestrator</div>
+        </div>
+      </div>
+      <div class="agent-desc">Collects scores from all 3 agents. Adjusts the weight of each signal based on the transaction type. Issues the final verdict.</div>
+      <div class="agent-checks">
+        <div class="check-item">Context-aware weighted voting</div>
+        <div class="check-item">Remittance vs QR vs ATM logic</div>
+        <div class="check-item">Score &lt; 0.35 = PASS | &gt; 0.65 = BLOCK</div>
+      </div>
+    </div>
+
+    <div class="agent-card otp">
+      <div class="agent-header">
+        <div class="agent-icon">🔐</div>
+        <div>
+          <div class="agent-name">OTP Interlock</div>
+          <div class="agent-role">Dual-Path Verification</div>
+        </div>
+      </div>
+      <div class="agent-desc">When score is in the middle (0.35–0.65), it sends OTP via BOTH email AND SMS. Both must be confirmed. One channel being hacked is not enough.</div>
+      <div class="agent-checks">
+        <div class="check-item">Email + SMS simultaneously (Sparrow)</div>
+        <div class="check-item">SIM-swap detector — checks if SIM changed in 48hrs</div>
+        <div class="check-item">90 sec timeout → auto-block</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERDICT -->
+  <h3 style="font-family:'Syne',sans-serif; margin-bottom: 20px; font-size: 20px;">The 3 Possible Verdicts</h3>
+  <div class="verdict-grid">
+    <div class="verdict-card pass">
+      <div class="verdict-label">✅ Pass</div>
+      <div class="verdict-score" style="color: var(--green);">0–0.35</div>
+      <div class="verdict-desc">Transaction goes through instantly. No friction for the customer.</div>
+    </div>
+    <div class="verdict-card otp-v">
+      <div class="verdict-label">⚠️ OTP Required</div>
+      <div class="verdict-score" style="color: var(--amber);">0.35–0.65</div>
+      <div class="verdict-desc">Suspicious but not certain. Customer verifies via email + SMS.</div>
+    </div>
+    <div class="verdict-card block">
+      <div class="verdict-label">🚫 Block</div>
+      <div class="verdict-score" style="color: var(--red);">0.65+</div>
+      <div class="verdict-desc">High confidence of fraud. Transaction blocked. Fraud team alerted.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 4: KEY CHALLENGES -->
+<div class="section fade-in">
+  <div class="section-label">Step 4 — The 4 Problems They Want Solved</div>
+  <h2 class="section-title">How we solve each hackathon challenge</h2>
+  <p class="section-desc">The hackathon listed 4 specific problems. Here's exactly how NepalShield solves each one.</p>
+
+  <div class="challenges-grid">
+    <div class="challenge-card">
+      <div class="ch-problem">
+        <div class="ch-num">1</div>
+        <div class="ch-problem-text">Minimizing false positives — blocking real customers = they leave the bank</div>
+      </div>
+      <div class="ch-arrow">↓ Our Solution</div>
+      <div class="ch-solution">
+        <div class="ch-solution-icon">💡</div>
+        <div class="ch-solution-text">3-tier response: PASS / OTP / BLOCK — not just block or allow. Real customers get OTP instead of hard block. We also train on Nepal-specific data, not western models.</div>
+      </div>
+    </div>
+
+    <div class="challenge-card">
+      <div class="ch-problem">
+        <div class="ch-num">2</div>
+        <div class="ch-problem-text">Synthesis agent must adapt weights based on context (remittance vs POS vs QR)</div>
+      </div>
+      <div class="ch-arrow">↓ Our Solution</div>
+      <div class="ch-solution">
+        <div class="ch-solution-icon">💡</div>
+        <div class="ch-solution-text">Dynamic weight table in the Synthesis Agent. For high-value P2P transfers, graph analysis weighs 30%. For QR payments, velocity weighs 35%. Context changes everything.</div>
+      </div>
+    </div>
+
+    <div class="challenge-card">
+      <div class="ch-problem">
+        <div class="ch-num">3</div>
+        <div class="ch-problem-text">Cold-start problem: new users with no behavioral history</div>
+      </div>
+      <div class="ch-arrow">↓ Our Solution</div>
+      <div class="ch-solution">
+        <div class="ch-solution-icon">💡</div>
+        <div class="ch-solution-text">Peer-group model. New users are matched to similar users (same age, account type, onboarding branch). They inherit that group's baseline until they build personal history (30+ transactions).</div>
+      </div>
+    </div>
+
+    <div class="challenge-card">
+      <div class="ch-problem">
+        <div class="ch-num">4</div>
+        <div class="ch-problem-text">SIM-swap attacks that compromise both SMS channels simultaneously</div>
+      </div>
+      <div class="ch-arrow">↓ Our Solution</div>
+      <div class="ch-solution">
+        <div class="ch-solution-icon">💡</div>
+        <div class="ch-solution-text">Dual-path OTP (email + SMS both required). Plus a telecom API check — if SIM was changed in 48 hours, SMS is disabled entirely and only email is used.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 5: TECH STACK -->
+<div class="section fade-in">
+  <div class="section-label">Step 5 — What We'll Build With</div>
+  <h2 class="section-title">Technology Stack</h2>
+  <p class="section-desc">These are the tools we'll use. Most of us already know several of them.</p>
+
+  <div class="tech-grid">
+    <div class="tech-item"><div class="tech-emoji">🔥</div><div class="tech-info"><div class="tech-name">PyTorch / TF</div><div class="tech-use">ML models (LSTM, GNN)</div></div></div>
+    <div class="tech-item"><div class="tech-emoji">📡</div><div class="tech-info"><div class="tech-name">Apache Kafka</div><div class="tech-use">Transaction event streaming</div></div></div>
+    <div class="tech-item"><div class="tech-emoji">⚡</div><div class="tech-info"><div class="tech-name">Redis</div><div class="tech-use">Velocity cache (&lt;5ms)</div></div></div>
+    <div class="tech-item"><div class="tech-emoji">🕸️</div><div class="tech-info"><div class="tech-name">Neo4j</div><div class="tech-use">Account linkage graph</div></div></div>
+    <div class="tech-item"><div class="tech-emoji">📱</div><div class="tech-info"><div class="tech-name">Sparrow SMS</div><div class="tech-use">Nepal SMS gateway</div></div></div>
+    <div class="tech-item"><div class="tech-emoji">📊</div><div class="tech-info"><div class="tech-name">MLflow</div><div class="tech-use">Model versioning & A/B</div></div></div>
+    <div class="tech-item"><div class="tech-emoji">🐘</div><div class="tech-info"><div class="tech-name">PostgreSQL</div><div class="tech-use">Transaction history</div></div></div>
+    <div class="tech-item"><div class="tech-emoji">🐍</div><div class="tech-info"><div class="tech-name">FastAPI</div><div class="tech-use">Agent orchestration API</div></div></div>
+    <div class="tech-item"><div class="tech-emoji">⚛️</div><div class="tech-info"><div class="tech-name">React + Flask</div><div class="tech-use">Fraud ops dashboard</div></div></div>
+    <div class="tech-item"><div class="tech-emoji">☁️</div><div class="tech-info"><div class="tech-name">DigitalOcean</div><div class="tech-use">Deployment (we know this!)</div></div></div>
+  </div>
+
+  <!-- LATENCY -->
+  <h3 style="font-family:'Syne',sans-serif; margin-bottom: 24px; font-size: 20px;">⏱️ How We Hit Under 800ms</h3>
+  <div class="latency-bar">
+    <div class="lat-row">
+      <div class="lat-label">Kafka ingestion</div>
+      <div class="lat-track"><div class="lat-fill" style="width: 2.5%;"></div></div>
+      <div class="lat-val">&lt; 20ms</div>
+    </div>
+    <div class="lat-row">
+      <div class="lat-label">Velocity Agent (Redis)</div>
+      <div class="lat-track"><div class="lat-fill" style="width: 1.25%;"></div></div>
+      <div class="lat-val">&lt; 10ms</div>
+    </div>
+    <div class="lat-row">
+      <div class="lat-label">Geo Agent (IP lookup)</div>
+      <div class="lat-track"><div class="lat-fill" style="width: 6.25%;"></div></div>
+      <div class="lat-val">&lt; 50ms</div>
+    </div>
+    <div class="lat-row">
+      <div class="lat-label">Behavior Agent (ML inference)</div>
+      <div class="lat-track"><div class="lat-fill" style="width: 18.75%;"></div></div>
+      <div class="lat-val">&lt; 150ms</div>
+    </div>
+    <div class="lat-row">
+      <div class="lat-label">Synthesis Agent (verdict)</div>
+      <div class="lat-track"><div class="lat-fill" style="width: 3.75%;"></div></div>
+      <div class="lat-val">&lt; 30ms</div>
+    </div>
+    <div class="lat-row">
+      <div class="lat-label" style="font-weight:700; color: white;">Total (parallel execution)</div>
+      <div class="lat-track"><div class="lat-fill" style="width: 100%; background: linear-gradient(90deg, var(--green), var(--cyan));"></div></div>
+      <div class="lat-val" style="color: var(--green); font-weight: 700;">&lt; 800ms</div>
+    </div>
+  </div>
+  <p style="color: var(--muted); font-size: 13px; margin-top: 8px;">* Agents run in parallel — the total is determined by the slowest agent (Behavior at 150ms), not the sum.</p>
+</div>
+
+<hr class="divider">
+
+<!-- FOOTER -->
+<div class="footer">
+  <p style="font-size: 20px; margin-bottom: 8px;">🛡️</p>
+  <p><strong>NepalShield</strong> — Built by Chandan Sharma Thakur & Team</p>
+  <p style="margin-top: 8px;">GIBL AI/ML Hackathon 2026 · Track B: Security & Fraud · Submission deadline: May 4, 2026</p>
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
